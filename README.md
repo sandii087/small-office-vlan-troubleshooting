@@ -26,7 +26,7 @@ A practical Cisco Packet Tracer lab for a junior network / IT support portfolio.
                   Gi0/0.20: 192.168.20.1/24
 ```
 
-The diagram source is [`docs/topology.svg`](docs/topology.svg). The baseline configurations are [`configs/R1-router.txt`](configs/R1-router.txt) and [`configs/SW1-switch.txt`](configs/SW1-switch.txt).
+The diagram source is [`docs/topology.svg`](docs/topology.svg). Verified session screenshots are linked in [`docs/verification-results.md`](docs/verification-results.md). The baseline configurations are [`configs/R1-router.txt`](configs/R1-router.txt) and [`configs/SW1-switch.txt`](configs/SW1-switch.txt).
 
 ## Build the topology in Packet Tracer
 

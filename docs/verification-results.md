@@ -14,7 +14,17 @@ The simulation was built in Cisco Packet Tracer 9.0.1 on macOS and saved as `sma
 | PC0 to `192.168.10.21` | Four packets sent, four received, zero loss; self-ping | PC command-prompt screenshot; this does not verify routing |
 | PC0 to `192.168.20.21` | First attempt: three received, one lost (25% loss); repeated test: zero loss | User-reported packet-loss statistics; screenshot of the repeated test not yet bundled |
 
-The session screenshots are not bundled with this repository yet.
+## Screenshot evidence
+
+The following original session screenshots are included:
+
+- [Router configuration](evidence/router-configuration.png): accepted gateway and DHCP commands, interface-up messages, and the final router prompt.
+- [Switch configuration](evidence/switch-configuration.png): VLAN/access/trunk commands and configuration save confirmation.
+- [Same-VLAN ping](evidence/same-vlan-ping.png): four replies from `192.168.10.22`, zero loss.
+
+![Successful same-VLAN ping](evidence/same-vlan-ping.png)
+
+Cross-VLAN and fault/repair ping screenshots are still outstanding; their statistics below remain user-reported.
 
 ## Completed troubleshooting exercise
 
@@ -28,7 +38,7 @@ The user created a separate `vlan20-troubleshooting.pkt` copy so the baseline re
 
 **Root cause:** VLAN 20 was excluded from the switch-to-router trunk. The router could not carry traffic between VLAN 10 and the VLAN 20 endpoint through that link. Restoring VLAN 20 restored connectivity.
 
-The bundled troubleshooting file contains the repaired state, not an intentionally broken network. The failure and repair results are user-reported; screenshots and show-command output have not yet been bundled.
+The bundled troubleshooting file contains the repaired state, not an intentionally broken network. The failure and repair results are user-reported; screenshots of this exercise and show-command output have not yet been bundled.
 
 ## Remaining verification
 
