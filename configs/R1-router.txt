@@ -1,0 +1,45 @@
+! R1 — Cisco 1941; router-on-a-stick for VLANs 10 and 20
+! Connect GigabitEthernet0/0 to SW1 GigabitEthernet0/1 (802.1Q trunk).
+enable
+configure terminal
+hostname R1
+no ip domain-lookup
+service password-encryption
+
+interface GigabitEthernet0/0
+ description 802.1Q trunk to SW1 Gi0/1
+ no ip address
+ no shutdown
+exit
+
+interface GigabitEthernet0/0.10
+ description IT VLAN 10 gateway
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+exit
+
+interface GigabitEthernet0/0.20
+ description Operations VLAN 20 gateway
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+exit
+
+ip dhcp excluded-address 192.168.10.1 192.168.10.20
+ip dhcp excluded-address 192.168.20.1 192.168.20.20
+
+ip dhcp pool IT-VLAN10
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 1.1.1.1
+ domain-name office.example
+exit
+
+ip dhcp pool OPS-VLAN20
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+ dns-server 1.1.1.1
+ domain-name office.example
+exit
+
+end
+write memory

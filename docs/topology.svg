@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Small office VLAN topology</title>
+  <desc id="desc">Four PCs connect to a Catalyst 2960 switch. Two IT PCs use VLAN 10, two Operations PCs use VLAN 20. The switch uses an 802.1Q trunk to a Cisco 1941 router with one gateway subinterface per VLAN.</desc>
+  <defs>
+    <style>
+      text { font-family: Inter, Arial, sans-serif; fill: #172033; }
+      .muted { fill: #526078; font-size: 15px; }
+      .label { font-size: 18px; font-weight: 700; }
+      .device { fill: #fff; stroke: #7384a3; stroke-width: 2; rx: 14; }
+      .pc { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; rx: 9; }
+      .line { stroke: #526078; stroke-width: 3; }
+      .trunk { stroke: #635bdb; stroke-width: 5; }
+    </style>
+  </defs>
+  <rect width="1200" height="650" fill="#f4f7fb"/>
+  <text x="600" y="45" text-anchor="middle" font-size="27" font-weight="750">Small Office VLAN &amp; Network Troubleshooting Lab</text>
+
+  <rect x="75" y="95" width="470" height="185" rx="18" fill="#eaf2ff" stroke="#b9cff7"/>
+  <text x="310" y="125" text-anchor="middle" class="label">IT · VLAN 10 · 192.168.10.0/24</text>
+  <rect x="655" y="95" width="470" height="185" rx="18" fill="#e8f8f2" stroke="#a9dec9"/>
+  <text x="890" y="125" text-anchor="middle" class="label">Operations · VLAN 20 · 192.168.20.0/24</text>
+
+  <g>
+    <rect class="pc" x="155" y="155" width="145" height="76"/><text x="227" y="186" text-anchor="middle" class="label">IT-PC1</text><text x="227" y="211" text-anchor="middle" class="muted">Fa0/1 · access 10</text>
+    <rect class="pc" x="340" y="155" width="145" height="76"/><text x="412" y="186" text-anchor="middle" class="label">IT-PC2</text><text x="412" y="211" text-anchor="middle" class="muted">Fa0/2 · access 10</text>
+    <rect class="pc" x="735" y="155" width="145" height="76"/><text x="807" y="186" text-anchor="middle" class="label">OPS-PC1</text><text x="807" y="211" text-anchor="middle" class="muted">Fa0/3 · access 20</text>
+    <rect class="pc" x="920" y="155" width="145" height="76"/><text x="992" y="186" text-anchor="middle" class="label">OPS-PC2</text><text x="992" y="211" text-anchor="middle" class="muted">Fa0/4 · access 20</text>
+  </g>
+
+  <line x1="227" y1="231" x2="390" y2="350" class="line"/><line x1="412" y1="231" x2="450" y2="350" class="line"/>
+  <line x1="807" y1="231" x2="650" y2="350" class="line"/><line x1="992" y1="231" x2="710" y2="350" class="line"/>
+
+  <rect class="device" x="330" y="350" width="540" height="100"/>
+  <text x="600" y="390" text-anchor="middle" font-size="23" font-weight="750">SW1 · Catalyst 2960</text>
+  <text x="600" y="421" text-anchor="middle" class="muted">Access VLANs 10 / 20 · Gi0/1 trunk allows 10,20</text>
+  <line x1="600" y1="450" x2="600" y2="515" class="trunk"/>
+  <text x="620" y="488" class="muted">Gi0/1 ↔ Gi0/0 · 802.1Q</text>
+  <rect class="device" x="330" y="515" width="540" height="105"/>
+  <text x="600" y="555" text-anchor="middle" font-size="23" font-weight="750">R1 · Cisco 1941</text>
+  <text x="600" y="586" text-anchor="middle" class="muted">Gi0/0.10 → 192.168.10.1 · Gi0/0.20 → 192.168.20.1 · DHCP</text>
+</svg>
