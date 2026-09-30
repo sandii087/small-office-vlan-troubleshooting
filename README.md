@@ -2,7 +2,7 @@
 
 A practical Cisco Packet Tracer lab for a junior network / IT support portfolio. It builds a small office with two departments, separates them with VLANs, routes between them with router-on-a-stick, and uses DHCP for client addressing.
 
-> **Artifact status:** Packet Tracer is not installed in the authoring environment, so this repository contains the tested-to-spec device configurations, topology, and hands-on build/test instructions. It does not yet contain a `.pkt` file or claim a Packet Tracer simulation was run. Open Packet Tracer and follow **Build the topology** to create and save `small-office-vlan-troubleshooting.pkt`.
+> **Artifact status:** The lab was built in Cisco Packet Tracer 9.0.1 on macOS. The saved simulation is included as [`small-office-vlan-troubleshooting.pkt`](small-office-vlan-troubleshooting.pkt). See [`docs/verification-results.md`](docs/verification-results.md) for observed results and checks still awaiting evidence.
 
 ## What you will build
 
@@ -87,6 +87,9 @@ See [`docs/troubleshooting-notes.md`](docs/troubleshooting-notes.md) for a repea
 
 ## Repository contents
 
+- `small-office-vlan-troubleshooting.pkt` — saved Packet Tracer simulation
+- `vlan20-troubleshooting.pkt` — saved, repaired copy used for the VLAN 20 trunk troubleshooting exercise
+- `docs/verification-results.md` — observed test results and remaining evidence
 - `configs/` — complete baseline router and switch CLI configurations
 - `docs/topology.svg` — topology diagram
 - `docs/troubleshooting-notes.md` — troubleshooting workflow, fault exercises, and portfolio evidence checklist
@@ -100,4 +103,4 @@ python3 scripts/validate_configs.py
 
 ## Limits and next step
 
-The Python validator checks that the text configurations match the documented design; it is not a Cisco IOS emulator and does not replace Packet Tracer verification. Save the `.pkt` after building it, test the expected connectivity, and add screenshots or a short results section before claiming the simulation has been completed. No passwords, API keys, or other secrets belong in this repository.
+The Python validator checks that the text configurations match the documented design; it is not a Cisco IOS emulator and does not replace Packet Tracer verification. The included `.pkt` preserves the built lab. The verification record distinguishes screenshot-confirmed results from user-reported results; the VLAN 20 trunk failure and repair have been completed, while additional screenshots and show-command evidence remain to be captured. No passwords, API keys, or other secrets belong in this repository.
