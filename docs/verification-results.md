@@ -12,7 +12,7 @@ The simulation was built in Cisco Packet Tracer 9.0.1 on macOS and saved as `sma
 | DHCP selection on all PCs | User completed DHCP selection on PC0–PC3 | Remaining addresses not independently recorded |
 | PC0 to `192.168.10.22` | Four packets sent, four received, zero loss | PC command-prompt screenshot |
 | PC0 to `192.168.10.21` | Four packets sent, four received, zero loss; self-ping | PC command-prompt screenshot; this does not verify routing |
-| PC0 to `192.168.20.21` | First attempt: three received, one lost (25% loss); repeated test: zero loss | User-reported packet-loss statistics; screenshot of the repeated test not yet bundled |
+| PC0 to `192.168.20.21` | First attempt: three received, one lost (25% loss); repeated test: zero loss | [Cross-VLAN test screenshot](evidence/cross-vlan-fault-and-repair.png) confirms the initial 25% loss and repeated zero-loss test |
 
 ## Screenshot evidence
 
@@ -21,29 +21,31 @@ The following original session screenshots are included:
 - [Router configuration](evidence/router-configuration.png): accepted gateway and DHCP commands, interface-up messages, and the final router prompt.
 - [Switch configuration](evidence/switch-configuration.png): VLAN/access/trunk commands and configuration save confirmation.
 - [Same-VLAN ping](evidence/same-vlan-ping.png): four replies from `192.168.10.22`, zero loss.
+- [Cross-VLAN fault and repair](evidence/cross-vlan-fault-and-repair.png): initial and repeated successful pings, two failed attempts with 100% loss, then four replies with zero loss after repair.
 
 ![Successful same-VLAN ping](evidence/same-vlan-ping.png)
 
-Cross-VLAN and fault/repair ping screenshots are still outstanding; their statistics below remain user-reported.
+![Cross-VLAN connectivity, failure, and recovery](evidence/cross-vlan-fault-and-repair.png)
+
+The screenshot confirms the ping outcomes. The switch configuration changes during the fault exercise were reported during the session; their show-command output remains to be captured.
 
 ## Completed troubleshooting exercise
 
 The user created a separate `vlan20-troubleshooting.pkt` copy so the baseline remained available.
 
 1. On SW1 Gi0/1, changed the allowed trunk VLAN list to `10`.
-2. Ran PC0 `ping 192.168.20.21`: user reported **100% packet loss**.
+2. Ran PC0 `ping 192.168.20.21`: **100% packet loss**, confirmed in the screenshot.
 3. Restored the trunk allowed VLAN list to `10,20`.
-4. Repeated the same ping: user reported **four received, zero lost**.
+4. Repeated the same ping: **four received, zero lost**, confirmed in the screenshot.
 5. Saved the repaired troubleshooting copy after being instructed to run `write memory`.
 
 **Root cause:** VLAN 20 was excluded from the switch-to-router trunk. The router could not carry traffic between VLAN 10 and the VLAN 20 endpoint through that link. Restoring VLAN 20 restored connectivity.
 
-The bundled troubleshooting file contains the repaired state, not an intentionally broken network. The failure and repair results are user-reported; screenshots of this exercise and show-command output have not yet been bundled.
+The bundled troubleshooting file contains the repaired state, not an intentionally broken network. The bundled screenshot confirms the failed and recovered ping results. Show-command output for the fault and repair settings has not yet been bundled.
 
 ## Remaining verification
 
 - Record `ipconfig` for all four PCs, confirming PC0/PC1 use VLAN 10 and PC2/PC3 use VLAN 20.
-- Capture a screenshot of the successful repeated cross-VLAN ping, including destination and packet-loss statistics.
 - Capture switch `show vlan brief` and `show interfaces trunk`.
 - Capture router `show ip interface brief`, `show ip route`, and `show ip dhcp binding`.
 - Reopen the saved simulation and confirm it retains the topology and configuration.
